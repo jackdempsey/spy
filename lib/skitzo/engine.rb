@@ -8,7 +8,5 @@ module Skitzo
       app.middlewares.use Skitzo::Switcher
     end
 
-    # Add a load path for this specific Engine
-    config.load_paths << File.expand_path("../../lib/skitzo", __FILE__)
   end
 end
