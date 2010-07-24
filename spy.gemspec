@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jack Dempsey"]
-  s.date = %q{2010-07-22}
-  s.description = %q{Engine to let an admin easily switch}
+  s.date = %q{2010-07-24}
+  s.description = %q{Spy is a simple middleware that lets a User model that returns true for is_admin? login as any user in the system.}
   s.email = %q{jack.dempsey@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -24,11 +24,11 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "app/controllers/spy/users_controller.rb",
-     "app/models/user.rb",
      "config/routes.rb",
      "lib/spy.rb",
      "lib/spy/engine.rb",
-     "lib/spy/middleware.rb",
+     "lib/spy/switcher.rb",
+     "spy.gemspec",
      "test/helper.rb",
      "test/test_spy.rb"
   ]
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Engine to let an admin easily switch}
+  s.summary = %q{Engine to let an admin easily become other people}
   s.test_files = [
     "test/helper.rb",
      "test/test_spy.rb"
