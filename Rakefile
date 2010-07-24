@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "spy"
-    gem.summary = %Q{Engine to let an admin easily switch}
-    gem.description = %Q{Engine to let an admin easily switch}
+    gem.summary = %Q{Engine to let an admin easily become other people}
+    gem.description = %Q{Spy is a simple middleware that lets a User model that returns true for is_admin? login as any user in the system.}
     gem.email = "jack.dempsey@gmail.com"
     gem.homepage = "http://github.com/jackdempsey/spy"
     gem.authors = ["Jack Dempsey"]
