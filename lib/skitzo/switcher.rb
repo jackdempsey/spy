@@ -1,5 +1,5 @@
 module Skitzo
-  class Middleware
+  class Switcher
     def initialize(app)  
       @app = app  
     end  
