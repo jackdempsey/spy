@@ -1,4 +1,4 @@
-module Skitzo
+module Spy
   class UsersController < ApplicationController
 
     unloadable

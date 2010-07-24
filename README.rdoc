@@ -1,4 +1,4 @@
-= skitzo
+= spy
 
 Description goes here.
 

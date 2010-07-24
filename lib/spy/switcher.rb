@@ -1,4 +1,4 @@
-module Skitzo
+module Spy
   class Switcher
     def initialize(app)  
       @app = app  
