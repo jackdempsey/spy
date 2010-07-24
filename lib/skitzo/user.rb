@@ -1,4 +1,3 @@
-puts "being required"
 class User
   def is_admin?
     email == 'admin@test.com'
