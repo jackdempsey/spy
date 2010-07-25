@@ -14,13 +14,13 @@ module Spy
     def sign_in_admin
       if current_user.is_admin?
         flash[:notice] = "Signed in as admin"
-        sign_in :admin, current_user
+        sign_in Spy.admin_scope, current_user
       end
       redirect_to '/'
     end
 
     def sign_out_admin
-      sign_out :admin
+      sign_out Spy.admin_scope
       flash[:notice] = "Signed out admin"
       redirect_to '/'
     end

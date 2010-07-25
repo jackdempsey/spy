@@ -6,7 +6,7 @@ module Spy
       
     def call(env)  
       status, headers, response = @app.call(env)
-      if env['warden'].authenticated?(:admin) and status == 200
+      if env['warden'].authenticated?(Spy.admin_scope) and status == 200
         users = User.all.map do |u|
           selected = env['warden'].user == u ? 'selected' : ''
           "<option value=#{u.id} #{selected}>#{u}</option>"
