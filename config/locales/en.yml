@@ -1,0 +1,5 @@
+en:
+  spy:
+    sessions:
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
