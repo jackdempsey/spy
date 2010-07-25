@@ -24,5 +24,20 @@ module Spy
       flash[:notice] = "Signed out admin"
       redirect_to '/'
     end
+
+    protected
+
+    def warden
+      request.env['warden']
+    end
+
+    def sign_in(scope, resource)
+      warden.set_user(resource, :scope => scope)
+    end
+
+    def sign_out(scope)
+      warden.session.clear
+      warden.logout(scope)
+    end
   end
 end
