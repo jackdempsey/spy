@@ -5,4 +5,5 @@ Things to remember:
 
   1. Your User model must respond to is_admin?
 
+  2. A controller method 'current_user' exists
 ===============================================================================
