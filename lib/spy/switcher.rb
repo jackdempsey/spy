@@ -7,13 +7,26 @@ module Spy
     def call(env)  
       status, headers, response = @app.call(env)
       if env['warden'].authenticated?(:admin) and status == 200
-        users = User.all.map{|u| "<option value=#{u.id}>#{u}</option>"}.unshift("<option>Login As:</option>").join
+        users = User.all.map do |u|
+          selected = env['warden'].user == u ? 'selected' : ''
+          "<option value=#{u.id} #{selected}>#{u}</option>"
+        end.unshift("<option>[choose]</option>").join
+
+        if env['warden'].user
+          logout_text = "| <a href='/users/sign_out'>logout user</a>"
+        end
+
         user_bar = <<-EOF
-        <div style='background-color: #efefef'>
+        <div style='color: #039; font-size: 16px; background-color:#DDF; border:3px solid #CCE; font-size:16px; margin-bottom:10px; padding:5px; '>
           <form action='/user_switcher' method='post'>
-          <select name='user_id' onchange='this.form.submit()'>#{users}</select>
-          <a href='/sign_out_admin'>Sign out</a>
+            Admin: #{env['warden'].user(:admin)} |
+            <a href='/sign_out_admin'>logout admin</a>
+            ||
+            User
+            <select name='user_id' onchange='this.form.submit()'>#{users}</select>
+            #{logout_text}
           </form>
+          <div style='clear: both'></div>
         </div>
         EOF
         response.body = insert_after_body(response.body, user_bar)
