@@ -7,20 +7,23 @@ module Spy
 
     def user_switcher
       user = User.find(params[:user_id])
-      sign_in :user, user
+      warden.session.clear if warden.authenticated?
+      warden.set_user(user)
       redirect_to '/'
     end
 
     def sign_in_admin
       if current_user.is_admin?
         flash[:notice] = t 'spy.sessions.admin.signed_in'
-        sign_in Spy.admin_scope, current_user
+        # store current user who has admin authorization into admin scope
+        warden.set_user(current_user, :scope => Spy.admin_scope)
+        warden.session[Spy.admin_scope] = warden.session
       end
       redirect_to '/'
     end
 
     def sign_out_admin
-      sign_out Spy.admin_scope
+      warden.logout # logs out all scopes
       flash[:notice] = t 'spy.sessions.admin.signed_out'
       redirect_to '/'
     end
@@ -31,13 +34,5 @@ module Spy
       request.env['warden']
     end
 
-    def sign_in(scope, resource)
-      warden.set_user(resource, :scope => scope)
-    end
-
-    def sign_out(scope)
-      warden.session.clear
-      warden.logout(scope)
-    end
   end
 end
