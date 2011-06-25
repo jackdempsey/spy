@@ -1,4 +1,4 @@
-Rails.application.routes.draw do |map|
+Rails.application.routes.draw do
   match 'user_switcher' => 'spy/users#user_switcher'
 
   match 'sign_in_admin' => 'spy/users#sign_in_admin'
