@@ -6,7 +6,7 @@ module Spy
       
     def call(env)  
       status, headers, response = @app.call(env)
-      return [status, headers, response] unless response.respond_to?(:body)
+      return [status, headers, response] unless response.respond_to?(:body) and response.respond_to?(:body=)
 
       if env['warden'].authenticated?(Spy.admin_scope) and status == 200
         users = User.all.map do |u|
