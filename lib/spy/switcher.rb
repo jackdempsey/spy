@@ -6,6 +6,8 @@ module Spy
       
     def call(env)  
       status, headers, response = @app.call(env)
+      return [status, headers, response] unless response.respond_to?(:body)
+
       if env['warden'].authenticated?(Spy.admin_scope) and status == 200
         users = User.all.map do |u|
           selected = env['warden'].user == u ? 'selected' : ''
@@ -29,7 +31,6 @@ module Spy
           <div style='clear: both'></div>
         </div>
         EOF
-        response.body = insert_after_body(response.body, user_bar)
       end
       [status, headers, response]
     end  
