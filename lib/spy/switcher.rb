@@ -32,6 +32,7 @@ module Spy
         </div>
         EOF
       end
+      response.body = insert_after_body(response.body, user_bar)
       [status, headers, response]
     end  
 
