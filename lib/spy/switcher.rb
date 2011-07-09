@@ -9,7 +9,7 @@ module Spy
       return [status, headers, response] unless response.respond_to?(:body) and response.respond_to?(:body=)
 
       if env['warden'].authenticated?(Spy.admin_scope) and status == 200
-        users = User.all.map do |u|
+        users = User.all.sort_by(&:to_s).map do |u|
           selected = env['warden'].user == u ? 'selected' : ''
           "<option value=#{u.id} #{selected}>#{u}</option>"
         end.unshift("<option>[choose]</option>").join
