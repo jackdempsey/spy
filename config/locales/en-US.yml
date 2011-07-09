@@ -1,0 +1,6 @@
+en:
+  spy:
+    sessions:
+      admin:
+        signed_in: 'Signed in successfully.'
+        signed_out: 'Signed out successfully.'
