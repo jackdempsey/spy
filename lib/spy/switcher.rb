@@ -37,7 +37,7 @@ module Spy
     end  
 
     def insert_after_body(content, text)
-      content.gsub(/<body(.*)>/, "<body#{$1}>#{text}")
+      content.gsub(/(<body[^>]+)>/, "\\1>#{text}")
     end
   end
 end
