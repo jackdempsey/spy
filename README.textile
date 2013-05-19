@@ -1,25 +1,5 @@
 h2. Spy - Easily Assume Another Identity
 
-h3. Reason for Existing
 
-Sometimes I need to login to a site as a different user. Whether it's to check on a bug, double check permissions , or to confirm something with my own eyes, it's often not convenient or prudent to keep a list of other's information, and the logout of mine, login to theirs, logout of theirs, now back to mine process reminds me too much of that Old Spice commercial.
+*UPDATE: I actually think there's not much reason for this to exist anymore. The switch_user gem is more maintained and seems to work well, so I'd go check it out at https://github.com/flyerhzm/switch_user*
 
-So, I designed this gem to take advantage of multiple scopes in Warden, with the goal of quickly switching my current_user around to anyone in the system as needed.
-
-I also hope this gem provides a useful real world example of how to build a Rails 3 engine. Once you feel comfortable with these basics I'd highly recommend looking at "Devise":http://github.com/plataformatec/devise for an excellent reference on Rails 3 generators, initializers, engines, and more.
-
-h3. Version Requirements and Info
-
-I started Spy with RubyGems 1.3.7, bundler 1.0.0.beta.5, and designed it to work with edge rails and edge devise (as of 7-25-2010).
-The end target is Rails 3 and whatever version of Devise is built against that.
-
-I used ruby 1.8.7 (2009-12-24 patchlevel 248) primarily to start, and will be testing out other implementations as time permits.
-
-h3. Usage Requirements
-
-There are a couple assumptions that Spy makes:
-
-# There is an ActiveRecord model <code>User</code>
-# A @user instance responds_to?(:is_admin?)
-# A @user instance has a to_s method that looks good in a select list
-# You're not already doing something with the :admin scope in Warden
